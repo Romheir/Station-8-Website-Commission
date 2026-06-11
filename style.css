@@ -650,3 +650,103 @@ body {
     .booking-container { padding: 2rem; }
     .input-row { flex-direction: column; gap: 1.5rem; }
 }
+
+/* ========================================================
+   GLOBAL DESKTOP FIXES
+   ======================================================== */
+/* Hide the hamburger on desktop so it doesn't break navbar alignment */
+.hamburger {
+    display: none;
+}
+
+/* Ensure horizontal scrolling is strictly disabled */
+html, body {
+    overflow-x: hidden;
+}
+
+/* ========================================================
+   MOBILE RESPONSIVENESS MASTER FRAMEWORK (Max Width: 768px)
+   ======================================================== */
+@media (max-width: 768px) {
+    /* 1. Typography Scaling */
+    .hero-branding-layer h1 {
+        font-size: 2.5rem; /* Stops the "8" from dropping down */
+    }
+    .hero-message {
+        font-size: 1.2rem;
+    }
+    .main-title {
+        font-size: 2rem;
+    }
+
+    /* 2. Column Stacking Fixes */
+    .profile-container, .input-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .glass-card {
+        padding: 2rem;
+    }
+
+    /* 3. Filter Buttons Wrap Fix */
+    .filter-controls {
+        flex-wrap: wrap;
+    }
+
+    /* 4. Hamburger Menu Activation */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 3000;
+    }
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--accent-teal);
+        transition: var(--transition-smooth);
+        border-radius: 2px;
+    }
+
+    /* 5. Hide Desktop Elements */
+    .navbar .cyber-btn {
+        display: none; /* Hides the desktop button on mobile */
+    }
+
+    /* 6. Slide-Out Mobile Navigation */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Hides menu off-screen initially */
+        width: 100%; /* Full screen width on mobile */
+        height: 100vh;
+        background: rgba(18, 19, 21, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 2500;
+    }
+    .nav-links.active {
+        right: 0; /* Slides menu in */
+    }
+    .nav-links li {
+        margin: 2rem 0;
+    }
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    /* 7. Hamburger 'X' Animation */
+    .hamburger.toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
