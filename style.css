@@ -813,10 +813,15 @@ html {
 }
 
 .brand-icon {
-    height: 35px; 
-    width: auto;
-    border-radius: 50%; /* Trims the white JPG background into a perfect circle */
-    box-shadow: 0 0 10px rgba(72, 190, 186, 0.3); /* Premium glow effect */
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    /* Set the image as a background */
+    background-image: url('assets/photo_2026-06-11_23-35-33.jpg');
+    /* This zooms the image in by 135% to push the white edges out of view! */
+    background-size: 135%; 
+    background-position: center;
+    box-shadow: 0 0 10px rgba(72, 190, 186, 0.4);
 }
 
 /* Apply the dark brick background to the hero section */
@@ -825,4 +830,27 @@ html {
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Creates the high-end parallax scrolling effect */
+}
+
+/* --- REAL GALLERY IMAGES --- */
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents squishing */
+    display: block;
+}
+
+/* --- REAL IMAGES (Gallery & Spaces) --- */
+.gallery-image, .spaces-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.spaces-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Pushes the image behind the dark tint overlay */
 }

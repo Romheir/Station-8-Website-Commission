@@ -135,3 +135,14 @@ function initMobileMenu() {
         });
     });
 }
+
+galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Find the actual <img> tag inside the clicked item
+            const imageElement = item.querySelector('.gallery-image');
+            
+            modal.classList.add("show");
+            modalImg.src = imageElement.src; // Grab the real image source
+            document.body.style.overflow = "hidden"; 
+        });
+    });

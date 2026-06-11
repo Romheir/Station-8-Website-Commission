@@ -10,7 +10,10 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo">Station <span>8</span></div>
+        <a href="index.html" class="nav-logo">
+            <div class="brand-icon"></div>
+            Station <span>8</span>
+        </a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="spaces.html">Spaces</a></li>
@@ -33,7 +36,6 @@
             </div>
             
             <form id="booking-form" class="premium-form" onsubmit="handleBookingSubmit(event)">
-                
                 <div class="input-row">
                     <div class="input-group">
                         <input type="text" id="client-name" required placeholder=" ">
@@ -60,3 +62,19 @@
                 </div>
 
                 <div class="input-group">
+                    <textarea id="event-details" required placeholder=" " rows="4"></textarea>
+                    <label for="event-details">Initial Event Details & Requirements</label>
+                </div>
+
+                <div id="ai-assistant-hook" style="display:none;"></div>
+
+                <button type="submit" id="booking-submit-btn" class="cyber-btn full-width">
+                    <span id="btn-status-text">Initialize Request</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
