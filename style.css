@@ -771,3 +771,58 @@ html {
 .hamburger {
     display: none;
 }
+
+/* --- BRAND LOGO INTEGRATION --- */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none; /* Keeps the text clean */
+}
+
+.brand-icon {
+    height: 35px; /* Scales the circle logo perfectly within the navbar */
+    width: auto;
+    border-radius: 50%; /* Ensures the edges are perfectly round */
+    box-shadow: 0 0 10px rgba(72, 190, 186, 0.3); /* Adds a faint teal glow to the logo */
+}
+
+/* --- HERO SECTION BACKGROUND UPGRADE --- */
+/* Note: Apply this to whatever class wraps your main "STATION 8" home text */
+.hero-section { 
+    /* The magic happens here: A heavy dark gradient sits ON TOP of the brick image */
+    background-image: linear-gradient(rgba(18, 19, 21, 0.85), rgba(18, 19, 21, 0.98)), url('assets/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates a high-end parallax scrolling effect */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========================================================
+   BRAND LOGO & BACKGROUND UPGRADES
+   ======================================================== */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none; 
+}
+
+.brand-icon {
+    height: 35px; 
+    width: auto;
+    border-radius: 50%; /* Trims the white JPG background into a perfect circle */
+    box-shadow: 0 0 10px rgba(72, 190, 186, 0.3); /* Premium glow effect */
+}
+
+/* Apply the dark brick background to the hero section */
+.hero-viewport { 
+    background-image: linear-gradient(rgba(18, 19, 21, 0.85), rgba(18, 19, 21, 0.98)), url('assets/photo_2026-06-10_14-07-35.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates the high-end parallax scrolling effect */
+}
