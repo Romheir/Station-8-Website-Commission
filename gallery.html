@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station 8 | Event Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">Station <span>8</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="spaces.html">Spaces</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="booking.html">Booking</a></li>
+        </ul>
+        <button class="cyber-btn" onclick="window.location.href='booking.html'">Secure Venue</button>
+    </nav>
+
+    <section class="gallery-section">
+        <div class="section-header reveal">
+            <h2 class="main-title">Moments Made <span>Beautiful</span></h2>
+            <p class="subtitle">A visual showcase of our signature event setups.</p>
+        </div>
+
+        <div class="photo-grid">
+            <div class="gallery-item reveal"><div class="placeholder-img" data-src="assets/event1.jpg">Client Image 1</div></div>
+            <div class="gallery-item reveal"><div class="placeholder-img" data-src="assets/event2.jpg">Client Image 2</div></div>
+            <div class="gallery-item reveal"><div class="placeholder-img" data-src="assets/event3.jpg">Client Image 3</div></div>
+            <div class="gallery-item reveal"><div class="placeholder-img" data-src="assets/event4.jpg">Client Image 4</div></div>
+            <div class="gallery-item reveal"><div class="placeholder-img" data-src="assets/event5.jpg">Client Image 5</div></div>
+            <div class="gallery-item reveal"><div class="placeholder-img" data-src="assets/event6.jpg">Client Image 6</div></div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Enlarged Event Photo">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

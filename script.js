@@ -5,6 +5,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     initTypewriter();
     initScrollReveals();
+    initInventoryFilters();
+    initLightbox(); // <-- New addition (For lightbox) For gallery Optimization
 });
 
 // --- TYPEWRITER CONFIGURATION MATRIX ---
@@ -73,5 +75,41 @@ function initScrollReveals() {
 
     revealElements.forEach(element => {
         observer.observe(element);
+    });
+}
+// --- LIGHTBOX LOGIC ---
+function initLightbox() {
+    const modal = document.getElementById("lightbox");
+    const modalImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".close-lightbox");
+    const galleryItems = document.querySelectorAll(".gallery-item"); 
+
+    if (!modal || !modalImg || !closeBtn) return;
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // NOTE: When you replace placeholders with real <img> tags, 
+            // you will update this to grab the src of the image itself.
+            const innerElement = item.querySelector('.placeholder-img');
+            const imageSource = innerElement.getAttribute('data-src'); 
+            
+            modal.classList.add("show");
+            // modalImg.src = imageSource; // <-- Uncomment this when using real images
+            document.body.style.overflow = "hidden"; // Freeze background scroll
+        });
+    });
+
+    // Close Button Click
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove("show");
+        document.body.style.overflow = "auto"; // Restore background scroll
+    });
+
+    // Close on clicking the dark background outside the image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
     });
 }
