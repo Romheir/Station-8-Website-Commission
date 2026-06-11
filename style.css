@@ -466,3 +466,124 @@ body {
 .close-lightbox:hover {
     color: var(--accent-teal);
 }
+
+/* --- DIRECT LOAD ANIMATIONS (For Above-the-Fold Content) --- */
+.load-fade {
+    animation: fadeInOnLoad 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInOnLoad {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* =========================================
+   BOOKING PAGE & FORM UI
+   ========================================= */
+
+.booking-section {
+    padding: 8rem 5% 5rem 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #121315;
+}
+
+.booking-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 4rem;
+    /* Inherits .glass-card blur from global styles */
+}
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.premium-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 1.2rem 1rem 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-glass);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    outline: none;
+}
+
+.input-group select {
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+/* Teal Glow on Click */
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: var(--accent-teal);
+    background: rgba(72, 190, 186, 0.03);
+    box-shadow: 0 0 15px rgba(72, 190, 186, 0.1);
+}
+
+/* Floating Label Animation */
+.input-group label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: var(--text-secondary);
+    transition: var(--transition-smooth);
+    pointer-events: none;
+    font-size: 1rem;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label {
+    top: -0.6rem;
+    left: 0.8rem;
+    font-size: 0.75rem;
+    background: #181a1b;
+    padding: 0 0.4rem;
+    color: var(--accent-teal);
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+/* Mobile Responsiveness for Form */
+@media (max-width: 768px) {
+    .booking-container { padding: 2rem; }
+    .input-row { flex-direction: column; gap: 1.5rem; }
+}
