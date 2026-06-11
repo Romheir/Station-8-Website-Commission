@@ -750,3 +750,11 @@ html, body {
         transform: translateY(-8px) rotate(-45deg);
     }
 }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    overflow-y: scroll; /* <-- to prevent jerking between pages (unecessary movement) */
+    line-height: 1.6;
+}
