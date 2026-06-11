@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station 8 | Secure a Venue</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">Station <span>8</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="spaces.html">Spaces</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="booking.html" class="active">Booking</a></li>
+        </ul>
+        <button class="cyber-btn" onclick="window.location.href='booking.html'">Secure Venue</button>
+    </nav>
+
+    <section class="booking-section">
+        <div class="booking-container glass-card reveal">
+            <div class="booking-header">
+                <h2 class="main-title">Secure Your <span>Date</span></h2>
+                <p class="subtitle">Initialize your event inquiry below. Our system will process your request.</p>
+            </div>
+            
+            <form id="booking-form" class="premium-form" onsubmit="handleBookingSubmit(event)">
+                
+                <div class="input-row">
+                    <div class="input-group">
+                        <input type="text" id="client-name" required placeholder=" ">
+                        <label for="client-name">Full Name</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="client-email" required placeholder=" ">
+                        <label for="client-email">Email Address</label>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <select id="event-type" required>
+                            <option value="" disabled selected>Select Event Type...</option>
+                            <option value="corporate">Corporate Function</option>
+                            <option value="wedding">Wedding / Debut</option>
+                            <option value="birthday">Birthday / Social</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="date" id="event-date" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
