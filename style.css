@@ -758,3 +758,16 @@ body {
     overflow-y: scroll; /* <-- to prevent jerking between pages (unecessary movement) */
     line-height: 1.6;
 }
+/* ========================================================
+   GLOBAL DESKTOP FIXES
+   ======================================================== */
+/* Force primary browser scrollbar permanently to prevent layout shifts */
+html {
+    overflow-y: scroll; 
+    overflow-x: hidden;
+}
+
+/* Hide the hamburger on desktop so it doesn't break navbar alignment */
+.hamburger {
+    display: none;
+}
