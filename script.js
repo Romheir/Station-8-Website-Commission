@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollReveals();
     initInventoryFilters();
     initLightbox(); // <-- New addition (For lightbox) For gallery Optimization
+    initMobileMenu(); // <-- New Addition
 });
 
 // --- TYPEWRITER CONFIGURATION MATRIX ---
@@ -111,5 +112,26 @@ function initLightbox() {
             modal.classList.remove("show");
             document.body.style.overflow = "auto";
         }
+    });
+}
+// --- MOBILE HAMBURGER MENU LOGIC ---
+function initMobileMenu() {
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (!hamburger || !navLinks) return;
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("toggle");
+    });
+
+    // Automatically close the menu when a link is tapped
+    const links = navLinks.querySelectorAll("a");
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            hamburger.classList.remove("toggle");
+        });
     });
 }
