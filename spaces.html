@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station 8 | Event Spaces</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- SHARED GLOBAL GLOBAL NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-logo">Station <span>8</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="spaces.html" class="active">Spaces</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="booking.html">Booking</a></li>
+        </ul>
+        <button class="cyber-btn" onclick="window.location.href='booking.html'">Secure Venue</button>
+    </nav>
+
+    <!-- INVENTORY HEADER & FILTER APPARATUS -->
+    <section class="spaces-section">
+        <div class="section-header reveal">
+            <h2 class="main-title">Our Curated <span>Spaces</span></h2>
+            <p class="subtitle">Tailored venues designed to elevate every occasion.</p>
+            
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Venues</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="wedding">Weddings & Debuts</button>
+                <button class="filter-btn" data-filter="birthday">Birthdays & Socials</button>
+            </div>
+        </div>
+
+        <!-- THE SPACE INVENTORY BENTO GRID -->
+        <div class="spaces-bento-grid">
+            
+            <!-- CARD 1: THE INDUSTRIAL REEF ROOM -->
+            <div class="bento-card glass-card reveal wide" data-category="corporate">
+                <div class="card-image-wrapper">
+                    <div class="image-placeholder-tint"></div>
+                    <span class="category-badge">Corporate / Multi-Functional</span>
+                </div>
+                <div class="card-info">
+                    <h3>The Industrial Suite</h3>
+                    <p>Featuring professional integrated AV systems, acoustic sound buffering, and configurable seating arrays ideal for brand activations, seminars, and corporate strategy summits.</p>
+                    <div class="card-meta">
+                        <span>Capacity: 50 - 100 PAX</span>
+                        <button class="text-btn" onclick="window.location.href='booking.html'">Check Dates &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: LUXURY CEREMONY HALL -->
+            <div class="bento-card glass-card reveal tall" data-category="wedding">
+                <div class="card-image-wrapper">
+                    <div class="image-placeholder-tint"></div>
+                    <span class="category-badge">Premium Weddings</span>
+                </div>
+                <div class="card-info">
+                    <h3>Grand Ballroom Styling</h3>
+                    <p>Bespoke floral styling, fairy-light stage canopies, and custom configurations built for unforgettable weddings and grand debuts.</p>
+                    <div class="card-meta">
+                        <span>Capacity: Up to 150 PAX</span>
+                        <button class="text-btn" onclick="window.location.href='booking.html'">Check Dates &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3: IMMERSIVE THEMED ZONE -->
+            <div class="bento-card glass-card reveal" data-category="birthday">
+                <div class="card-image-wrapper">
+                    <div class="image-placeholder-tint"></div>
+                    <span class="category-badge">Celebrations</span>
+                </div>
+                <div class="card-info">
+                    <h3>Social Celebration Zone</h3>
+                    <p>Equipped with an interactive LED infinite dance floor, integrated uplighting installations, and modular wall drapery perfect for vibrant birthday bashes.</p>
+                    <div class="card-meta">
+                        <span>Dynamic Setup</span>
+                        <button class="text-btn" onclick="window.location.href='booking.html'">Check Dates &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: BOUTIQUE LOUNGE -->
+            <div class="bento-card glass-card reveal" data-category="birthday">
+                <div class="card-image-wrapper">
+                    <div class="image-placeholder-tint"></div>
+                    <span class="category-badge">Boutique</span>
+                </div>
+                <div class="card-info">
+                    <h3>The Intimate Lounge</h3>
+                    <p>A sophisticated, closely knit venue backdrop designed perfectly for custom children's theme parties and private milestone family gatherings.</p>
+                    <div class="card-meta">
+                        <span>Cozy Setting</span>
+                        <button class="text-btn" onclick="window.location.href='booking.html'">Check Dates &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
