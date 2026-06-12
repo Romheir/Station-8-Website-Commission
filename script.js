@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 1. THE MOBILE HAMBURGER MENU ENGINE
+// 1. THE MOBILE HAMBURGER MENU ENGINE (Direct Click Method)
 function initMobileMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
@@ -14,18 +15,19 @@ function initMobileMenu() {
     // Safety check: If not found, skip gracefully
     if (!hamburger || !navLinks) return;
 
-    hamburger.addEventListener("click", () => {
+    // Force a clean, direct click listener
+    hamburger.onclick = function() {
         navLinks.classList.toggle("active");
         hamburger.classList.toggle("toggle");
-    });
+    };
 
-    // Automatically close the menu if they click a link
+    // Automatically close the menu if they tap a link
     const links = navLinks.querySelectorAll("a");
     links.forEach(link => {
-        link.addEventListener("click", () => {
+        link.onclick = function() {
             navLinks.classList.remove("active");
             hamburger.classList.remove("toggle");
-        });
+        };
     });
 }
 

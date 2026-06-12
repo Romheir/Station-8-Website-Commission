@@ -555,13 +555,14 @@ body {
     .navbar { padding: 1rem 6%; }
     .navbar .cyber-btn { display: none; }
     
-    /* 2. Hamburger Activation */
+   /* 2. Hamburger Activation (Bulletproof Layering) */
     .hamburger {
         display: flex;
         flex-direction: column;
         gap: 6px;
         cursor: pointer;
-        z-index: 3000;
+        z-index: 9999; /* Boosted to absolute top */
+        position: relative; /* CRITICAL: Forces the z-index to activate */
     }
     
     .hamburger span {
@@ -577,56 +578,26 @@ body {
     .hamburger.toggle span:nth-child(2) { opacity: 0; }
     .hamburger.toggle span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-    /* 4. The Slide-Out Menu System */
+    /* 4. The Drop-Down Menu System */
     .nav-links {
         position: fixed;
-        top: 0;
-        right: -100%; /* Hidden off-screen initially */
+        top: -120vh; /* Hides the menu completely above the screen */
+        left: 0;
         width: 100%;
         height: 100vh;
         background: rgba(18, 19, 21, 0.98);
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(25px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: top 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 2500;
-        display: flex; /* Kept as flex so items align properly when slid in */
+        display: flex !important; /* Guarantees it never gets accidentally hidden */
     }
     
-    .nav-links.active { right: 0; /* Slides into view when active class applied by JS */ }
+    .nav-links.active { 
+        top: 0; /* Drops the menu perfectly down into view */ 
+    }
+    
     .nav-links li { margin: 2rem 0; }
-    .nav-links a { font-size: 1.5rem; }
-
-    /* 5. Typography & Component Stacking */
-    .hero-branding-layer h1 { font-size: 2.5rem; }
-    .hero-message { font-size: 1.2rem; }
-    .main-title { font-size: 2rem; }
-    
-    .profile-container, .input-row {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .glass-card, .booking-container { padding: 2rem; }
-    .filter-controls { flex-wrap: wrap; }
-
-    /* 6. Gallery Zig-Zag Mobile Stack */
-    .gallery-showcase {
-        gap: 5rem;
-        padding: 1rem 2% 4rem 2%;
-    }
-    .showcase-item, .showcase-item:nth-child(even) {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .showcase-img, .showcase-text {
-        width: 100%;
-    }
-    .showcase-text h3 {
-        font-size: 2rem;
-    }
-    .showcase-text p {
-        font-size: 1rem;
-    }
-}
+    .nav-links a { font-size: 1.5rem; } 
