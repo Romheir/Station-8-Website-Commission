@@ -1,124 +1,17 @@
-/* ========================================================
-   STATION 8 OFFICIAL MASTER INTERACTIVITY ENGINE
-   ======================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
-    initTypewriter();
+    // We initialize the mobile menu FIRST to guarantee it always works
+    initMobileMenu();
     initScrollReveals();
+    initTypewriter();
     initInventoryFilters();
-    initLightbox(); // <-- New addition (For lightbox) For gallery Optimization
-    initMobileMenu(); // <-- New Addition
 });
 
-// --- TYPEWRITER CONFIGURATION MATRIX ---
-function initTypewriter() {
-    const targetElement = document.getElementById("typewriter-engine");
-    if (!targetElement) return;
-
-    const phrases = [
-        "Making Moments Beautiful.",
-        "We Plan. You Celebrate.",
-        "Corporate Meetings & Functions.",
-        "Weddings & Birthdays."
-    ];
-    
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let delay = 120;
-
-    function type() {
-        const currentPhrase = phrases[phraseIndex];
-        
-        if (isDeleting) {
-            targetElement.textContent = currentPhrase.substring(0, charIndex - 1);
-            charIndex--;
-            delay = 60;
-        } else {
-            targetElement.textContent = currentPhrase.substring(0, charIndex + 1);
-            charIndex++;
-            delay = 120;
-        }
-
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            isDeleting = true;
-            delay = 2000; // Freeze at full length for readability
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            delay = 500;
-        }
-
-        setTimeout(type, delay);
-    }
-    
-    type();
-}
-
-// --- HIGH-PERFORMANCE INTERSECTION OBSERVER FOR SCROLL REVEALS ---
-function initScrollReveals() {
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    const observerOptions = {
-        root: null,
-        threshold: 0.15,
-        rootMargin: "0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Optimize DOM tracking
-            }
-        });
-    }, observerOptions);
-
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
-}
-// --- LIGHTBOX LOGIC ---
-function initLightbox() {
-    const modal = document.getElementById("lightbox");
-    const modalImg = document.getElementById("lightbox-img");
-    const closeBtn = document.querySelector(".close-lightbox");
-    const galleryItems = document.querySelectorAll(".gallery-item"); 
-
-    if (!modal || !modalImg || !closeBtn) return;
-
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // NOTE: When you replace placeholders with real <img> tags, 
-            // you will update this to grab the src of the image itself.
-            const innerElement = item.querySelector('.placeholder-img');
-            const imageSource = innerElement.getAttribute('data-src'); 
-            
-            modal.classList.add("show");
-            // modalImg.src = imageSource; // <-- Uncomment this when using real images
-            document.body.style.overflow = "hidden"; // Freeze background scroll
-        });
-    });
-
-    // Close Button Click
-    closeBtn.addEventListener('click', () => {
-        modal.classList.remove("show");
-        document.body.style.overflow = "auto"; // Restore background scroll
-    });
-
-    // Close on clicking the dark background outside the image
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove("show");
-            document.body.style.overflow = "auto";
-        }
-    });
-}
-// --- MOBILE HAMBURGER MENU LOGIC ---
+// 1. THE MOBILE HAMBURGER MENU ENGINE
 function initMobileMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
 
+    // Safety check: If not found, skip gracefully
     if (!hamburger || !navLinks) return;
 
     hamburger.addEventListener("click", () => {
@@ -126,7 +19,7 @@ function initMobileMenu() {
         hamburger.classList.toggle("toggle");
     });
 
-    // Automatically close the menu when a link is tapped
+    // Automatically close the menu if they click a link
     const links = navLinks.querySelectorAll("a");
     links.forEach(link => {
         link.addEventListener("click", () => {
@@ -136,13 +29,113 @@ function initMobileMenu() {
     });
 }
 
-galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Find the actual <img> tag inside the clicked item
-            const imageElement = item.querySelector('.gallery-image');
-            
-            modal.classList.add("show");
-            modalImg.src = imageElement.src; // Grab the real image source
-            document.body.style.overflow = "hidden"; 
+// 2. SCROLL REVEAL ANIMATIONS
+function initScrollReveals() {
+    const reveals = document.querySelectorAll(".reveal");
+    if (reveals.length === 0) return;
+
+    const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+
+        reveals.forEach(reveal => {
+            const elementTop = reveal.getBoundingClientRect().top;
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add("active");
+            }
+        });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Trigger once on load
+}
+
+// 3. HOME PAGE TYPEWRITER EFFECT
+function initTypewriter() {
+    const typewriterElement = document.getElementById("typewriter-engine");
+    if (!typewriterElement) return;
+
+    const words = ["Beautiful.", "Unforgettable.", "Extraordinary.", "Yours."];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            charIndex--;
+        } else {
+            charIndex++;
+        }
+
+        typewriterElement.textContent = currentWord.substring(0, charIndex);
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            typeSpeed = 2000; 
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typeSpeed = 500; 
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    type();
+}
+
+// 4. SPACES PAGE FILTER BUTTONS
+function initInventoryFilters() {
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const bentoCards = document.querySelectorAll(".bento-card");
+
+    if (filterBtns.length === 0 || bentoCards.length === 0) return;
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            filterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const filterValue = btn.getAttribute("data-filter");
+
+            bentoCards.forEach(card => {
+                if (filterValue === "all" || card.getAttribute("data-category") === filterValue) {
+                    card.classList.remove("hide");
+                    setTimeout(() => { card.style.display = "flex"; }, 50);
+                } else {
+                    card.classList.add("hide");
+                    setTimeout(() => { 
+                        if(card.classList.contains("hide")) {
+                            card.style.display = "none"; 
+                        }
+                    }, 400); 
+                }
+            });
         });
     });
+}
+
+// 5. BOOKING FORM SUBMISSION MOCKUP
+window.handleBookingSubmit = function(event) {
+    event.preventDefault();
+    const btnText = document.getElementById("btn-status-text");
+    if (!btnText) return;
+
+    const originalText = btnText.innerText;
+    btnText.innerText = "Processing...";
+
+    setTimeout(() => {
+        btnText.innerText = "Request Sent!";
+        btnText.style.color = "#48beba";
+        document.getElementById("booking-form").reset();
+
+        setTimeout(() => {
+            btnText.innerText = originalText;
+            btnText.style.color = "inherit";
+        }, 3000);
+    }, 1500);
+}

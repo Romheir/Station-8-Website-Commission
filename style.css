@@ -23,7 +23,7 @@
 }
 
 html {
-    overflow-y: scroll; /* Forces vertical scrollbar permanently */
+    overflow-y: scroll; 
     overflow-x: hidden;
 }
 
@@ -33,7 +33,6 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     
-    /* GLOBAL PREMIUM BRICK BACKDROP */
     background-image: linear-gradient(rgba(18, 19, 21, 0.92), rgba(18, 19, 21, 0.98)), url('assets/photo_2026-06-10_14-07-35.jpg');
     background-size: cover;
     background-position: center;
@@ -111,7 +110,7 @@ body {
     width: 42px;
     border-radius: 50%;
     background-image: url('assets/photo_2026-06-11_23-35-33.jpg');
-    background-size: 135%; /* CSS Zoom Hack */
+    background-size: 135%; 
     background-position: center;
     box-shadow: 0 0 10px rgba(72, 190, 186, 0.4);
 }
@@ -135,7 +134,7 @@ body {
 }
 
 .hamburger {
-    display: none; /* Hidden on desktop */
+    display: none; 
 }
 
 /* --- HERO VIEWPORT FRAMEWORK --- */
@@ -185,7 +184,7 @@ body {
 /* --- CORPORATE PROFILE FRAMEWORK --- */
 .corporate-profile-section {
     padding: 6rem 10%;
-    background: transparent; /* Changed to let global brick show through */
+    background: transparent; 
 }
 
 .glass-card {
@@ -431,51 +430,6 @@ body {
     line-height: 1.8;
 }
 
-/* --- LIGHTBOX MODAL --- */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(6, 8, 10, 0.95);
-    backdrop-filter: blur(10px);
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.lightbox-modal.show {
-    display: flex;
-    opacity: 1;
-}
-
-.lightbox-content {
-    max-width: 90%;
-    max-height: 85vh;
-    border-radius: 8px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-    border: 1px solid var(--border-glass);
-}
-
-.close-lightbox {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    color: #ffffff;
-    font-size: 45px;
-    font-weight: 300;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-lightbox:hover {
-    color: var(--accent-teal);
-}
-
 /* =========================================
    BOOKING PAGE & FORM UI
    ========================================= */
@@ -597,11 +551,11 @@ body {
    MOBILE RESPONSIVENESS MASTER FRAMEWORK (Max Width: 768px)
    ======================================================== */
 @media (max-width: 768px) {
-    /* Navbar & Menu */
+    /* 1. Navbar & Header Fixes */
     .navbar { padding: 1rem 6%; }
-    .nav-links { display: none; }
     .navbar .cyber-btn { display: none; }
     
+    /* 2. Hamburger Activation */
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -618,14 +572,16 @@ body {
         border-radius: 2px;
     }
     
+    /* 3. Hamburger "X" Animation */
     .hamburger.toggle span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     .hamburger.toggle span:nth-child(2) { opacity: 0; }
     .hamburger.toggle span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
+    /* 4. The Slide-Out Menu System */
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -100%; /* Hidden off-screen initially */
         width: 100%;
         height: 100vh;
         background: rgba(18, 19, 21, 0.98);
@@ -635,14 +591,14 @@ body {
         align-items: center;
         transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 2500;
-        display: flex;
+        display: flex; /* Kept as flex so items align properly when slid in */
     }
     
-    .nav-links.active { right: 0; }
+    .nav-links.active { right: 0; /* Slides into view when active class applied by JS */ }
     .nav-links li { margin: 2rem 0; }
     .nav-links a { font-size: 1.5rem; }
 
-    /* Typography & Spacing */
+    /* 5. Typography & Component Stacking */
     .hero-branding-layer h1 { font-size: 2.5rem; }
     .hero-message { font-size: 1.2rem; }
     .main-title { font-size: 2rem; }
@@ -655,7 +611,7 @@ body {
     .glass-card, .booking-container { padding: 2rem; }
     .filter-controls { flex-wrap: wrap; }
 
-    /* Gallery Zig-Zag Override */
+    /* 6. Gallery Zig-Zag Mobile Stack */
     .gallery-showcase {
         gap: 5rem;
         padding: 1rem 2% 4rem 2%;
