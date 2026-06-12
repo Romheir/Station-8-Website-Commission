@@ -599,5 +599,6 @@ body {
         top: 0; /* Drops the menu perfectly down into view */ 
     }
     
-    .nav-links li { margin: 2rem 0; }
-    .nav-links a { font-size: 1.5rem; } 
+    nav-links li { margin: 2rem 0; }
+    .nav-links a { font-size: 1.5rem; }
+}
