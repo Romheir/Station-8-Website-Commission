@@ -39,6 +39,12 @@ body {
     background-attachment: fixed;
 }
 
+/* --- GLOBAL TEXT FORMATTING --- */
+p {
+    text-align: justify;
+    text-justify: inter-word; 
+}
+
 /* --- INTERACTIVE COMPONENTS --- */
 .cyber-btn {
     padding: 0.75rem 1.7rem;
@@ -168,6 +174,7 @@ body {
     letter-spacing: 4px;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
+    text-align: center; 
 }
 
 .hero-message {
@@ -239,6 +246,7 @@ body {
 .subtitle {
     color: var(--text-secondary);
     font-size: 1.1rem;
+    text-align: center; 
 }
 
 .filter-controls {
@@ -274,7 +282,6 @@ body {
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- CENTER STAGE ANIMATION LOGIC --- */
 .spaces-bento-grid.is-filtered {
     display: flex;
     flex-direction: column;
@@ -289,14 +296,13 @@ body {
 }
 
 .spaces-bento-grid.is-filtered .bento-card:not(.hide) .card-image-wrapper {
-    height: 400px; /* Expands the image beautifully on widescreen */
+    height: 400px; 
 }
 
 @keyframes centerStagePop {
     0% { transform: scale(0.9) translateY(30px); opacity: 0; }
     100% { transform: scale(1) translateY(0); opacity: 1; }
 }
-/* ------------------------------------ */
 
 .bento-card {
     padding: 0 !important; 
@@ -306,7 +312,6 @@ body {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, opacity 0.4s ease;
 }
 
-/* The .hide class instantly collapses unselected items */
 .bento-card.hide {
     opacity: 0;
     transform: scale(0.85);
@@ -341,7 +346,6 @@ body {
     height: 380px;
 }
 
-/* --- IMAGE LAYERING FIXES --- */
 .spaces-image {
     width: 100%;
     height: 100%;
@@ -470,7 +474,7 @@ body {
 }
 
 /* =========================================
-   BOOKING PAGE & FORM UI
+   BOOKING PAGE & FORM UI + ANIMATIONS
    ========================================= */
 
 .booking-section {
@@ -482,17 +486,56 @@ body {
     background: transparent;
 }
 
+/* --- THE LIQUID PUDDLE EFFECT --- */
 .booking-container {
     width: 100%;
     max-width: 800px;
     padding: 4rem;
+    position: relative; /* Anchor for the puddle pseudo-element */
+    z-index: 10;
 }
 
+.booking-container::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(60deg, rgba(72, 190, 186, 0.2), rgba(24, 26, 27, 0), rgba(72, 190, 186, 0.4), rgba(24, 26, 27, 0));
+    background-size: 300% 300%;
+    border-radius: 12px;
+    z-index: -1;
+    filter: blur(12px);
+    animation: liquidPuddle 8s ease-in-out infinite;
+}
+
+@keyframes liquidPuddle {
+    0% { background-position: 0% 50%; opacity: 0.6; }
+    50% { background-position: 100% 50%; opacity: 1; }
+    100% { background-position: 0% 50%; opacity: 0.6; }
+}
+
+/* --- NEON TITLE STROBE & SETTLE --- */
 .booking-header {
     text-align: center;
     margin-bottom: 3rem;
 }
 
+.booking-header .main-title {
+    /* Chains the wild strobe into the gentle pulse */
+    animation: neonTurnOn 1.5s ease-out forwards, softTealPulse 4s ease-in-out 1.5s infinite;
+}
+
+@keyframes neonTurnOn {
+    0%, 14%, 26%, 40%, 54%, 70%, 86% { color: #fff; text-shadow: 0 0 40px #fff, 0 0 80px var(--accent-teal); opacity: 1; }
+    7%, 20%, 33%, 47%, 62%, 78%, 93% { color: var(--text-secondary); text-shadow: none; opacity: 0.5; }
+    100% { color: var(--text-primary); text-shadow: 0 0 20px var(--accent-teal-glow); opacity: 1; }
+}
+
+@keyframes softTealPulse {
+    0%, 100% { text-shadow: 0 0 15px var(--accent-teal-glow); }
+    50% { text-shadow: 0 0 25px var(--accent-teal), 0 0 40px rgba(72, 190, 186, 0.4); }
+}
+
+/* --- THE FORM & iPHONE JIGGLE --- */
 .premium-form {
     display: flex;
     flex-direction: column;
@@ -521,6 +564,16 @@ body {
     font-size: 1rem;
     transition: var(--transition-smooth);
     outline: none;
+    
+    /* The App Jiggle: Waits 1.5s for the neon title to finish, then shakes */
+    animation: inputJiggle 0.8s cubic-bezier(.36,.07,.19,.97) 1.5s both;
+    transform-origin: center;
+}
+
+@keyframes inputJiggle {
+    0%, 100% { transform: rotate(0deg); }
+    15%, 45%, 75% { transform: rotate(-1.5deg) scale(1.01); border-color: rgba(72, 190, 186, 0.5); }
+    30%, 60% { transform: rotate(1.5deg) scale(1.01); border-color: rgba(72, 190, 186, 0.8); }
 }
 
 .input-group select {
@@ -646,7 +699,6 @@ body {
     .glass-card, .booking-container { padding: 2rem; }
     .filter-controls { flex-wrap: wrap; }
 
-    /* Forces all spaces cards to be uniform height on mobile, even during Center Stage animation */
     .spaces-bento-grid {
         display: flex;
         flex-direction: column;
